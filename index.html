@@ -76,7 +76,7 @@ $(function() {
   var colors = [ '#3F4FFF', '#2FBFE5', '#68FF5E', '#E5FF2F', '#FF982F', '#FF2F2F' ],
       regions = [];
       countryRegions = {};
-  $.get('data/copy_refugee.csv', function(csv) {
+  $.get('data/color_region.csv', function(csv) {
     var rows = CSV(csv),
         uniqueRegions = {};
     for (var i = 1; i < rows.length; i++) {
