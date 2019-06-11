@@ -4,13 +4,13 @@ body{
 
 .jumbotron{
 	background: url('../images/stormyseas.jpg');
-	min-height: 800px;
+	min-height: 700px;
 	background-size: cover;
 }
 .jumbotron-special{
 	background: url('../images/Refugeekids.png');
 	color:black;
-	min-height: 800px;
+	min-height: 700px;
 	background-size: cover;
 }
 
