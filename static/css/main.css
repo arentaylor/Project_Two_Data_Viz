@@ -7,6 +7,12 @@ body{
 	min-height: 800px;
 	background-size: cover;
 }
+.jumbotron-special{
+	background: url('../images/Refugeekids.png');
+	color:black;
+	min-height: 800px;
+	background-size: cover;
+}
 
 .custom-panel{
 	margin-top: 60px;
@@ -39,19 +45,19 @@ body{
 	text-transform: uppercase;
 }
 /* Footer */
-/* footer{
-	background-color: rgb(53,131,141); 
+.footer{
+	background-color: gainsboro;
 	border-top-style: solid; 
 	border-top-width: 5px; 
 	border-top-color: #647584;
-	color: white; 
+	color: darkslategray; 
 	min-height: 25px; 
 	font-family: Arial, Helvetica, sans-serif;
 	font-size: 15px; 
-	text-align: center; 
+	text-align: left; 
 	position: fixed;
 	left: 0;
 	bottom: 0;
 	width: 100%;
 	padding-top: 15px; 
-	} */
+	}
