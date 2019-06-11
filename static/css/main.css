@@ -1,21 +1,6 @@
 body{
-	background-color: white;
+	background-color: #B3B1BF;
 }
-/* .pagination a {
-	color: white;
-	float: left;
-	padding: 8px 16px;
-	text-decoration: none;
-	text-align: center; 
-	transition: background-color .3s;
-  }
-  
-  .pagination a.active {
-	background-color: dodgerblue;
-	color: white;
-  }
-  
-  .pagination a:hover:not(.active) {background-color: #ddd;} */
 
 .jumbotron{
 	background: url('../images/stormyseas.jpg');
@@ -54,7 +39,7 @@ body{
 	text-transform: uppercase;
 }
 /* Footer */
-footer{
+/* footer{
 	background-color: rgb(53,131,141); 
 	border-top-style: solid; 
 	border-top-width: 5px; 
@@ -69,4 +54,4 @@ footer{
 	bottom: 0;
 	width: 100%;
 	padding-top: 15px; 
-	}
+	} */
