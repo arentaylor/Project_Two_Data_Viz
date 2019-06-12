@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <meta charset="utf-8">
-<title>spatialsankey.js - sankey diagrams on a map</title>
+<title>Spatial Sankey Map</title>
 
 <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.css" />
 
@@ -65,6 +65,10 @@ div.tooltip {
     background: rgba(0, 0, 0, 0.8);
     border-radius: 4px;
 }
+table, th, td {
+  border: 1px solid gray;
+  border-collapse: collapse;
+}
 </style>
 
 <body>
@@ -72,7 +76,7 @@ div.tooltip {
   <form class="curvesettings">
   <div class="box">
     <div class="title">Curve settings</div>
-    <div>Hover over nodes<br> to see links.</div>
+    <div>Hover over countries<br> to see population outflow.</div>
     <div>Change styles using<br> radio buttons.</div>
   </div>
 
@@ -104,8 +108,9 @@ div.tooltip {
     </div>
   </form>
   <div class="source box">
-    <div class="title">European energy imports</div>
-    This graph shows how much petroleum products in thousands of tonnes are imported by each EU28 country. The <a href="http://appsso.eurostat.ec.europa.eu/nui/show.do?dataset=nrg_123a&lang=en">datasource</a> is the Eurostat database table nrg123a and for the year 2012.
+    <div class="title">Global Displacement Crisis</div>
+    This map visualizes the outflow and inflow of displaced people across countries between 1951 and 2017.
+    Data: <a href="https://www.kaggle.com/unitednations/refugee-data#persons_of_concern.csv">UNHCR Dataset</a>
   </div>
 </body>
 
@@ -113,6 +118,8 @@ div.tooltip {
 <script src="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.js"></script>
 <!-- <script src="http://rawgit.com/geodesign/spatialsankey/master/spatialsankey.js"></script> -->
 <script type="text/javascript" src="spatial_code.js"></script>
+<script type="text/javascript" src="countrynames.js"></script>
+
 <script type="text/javascript">
 
 // Set leaflet map
@@ -150,6 +157,7 @@ d3.json("nodes.json", function(nodes) {
                             .links(links);
     
     var mouseover = function(d){
+      console.log(d);
       // Get link data for this node
       var nodelinks = spatialsankey.links().filter(function(link){
         return link.source == d.id;
@@ -158,53 +166,56 @@ d3.json("nodes.json", function(nodes) {
       //Show tooltip div
       div
         .html(
-          "<h3>" + d.id + "</h3>" +
-          "<h4>Total outflow:" + Math.round(d.properties.aggregate_outflows/1000000) + " million</h4>" +
-          "<h4>Refugees (%):" + d.properties.aggregate_refugee_outflows + "</h4>" +
-          "<h4>Total inflow:" + Math.round(d.properties.aggregate_inflows/1000000) + " million</h4>"
-          // "<h4>Refugees (%):" + d.properties.aggregate_refugee_inflows + "</h4>"
-        //   <table>
-        //   <tr>
-        //     <th>Status</th>
-        //     <th>Inflow</th> 
-        //     <th>Outflow</th>
-        //   </tr>
-        //   <tr>
-        //     <td>Refugees (%): </td>
-        //     <td></td> 
-        //     <td></td>
-        //   </tr>
-        //   <tr>
-        //     <td>Asylum pending (%): </td>
-        //     <td></td> 
-        //     <td></td>
-        //   </tr>
-        //   <tr>
-        //     <td>Returned refugees (%): </td>
-        //     <td></td> 
-        //     <td></td>
-        //   </tr>
-        //   <tr>
-        //     <td>Internally displaced persons [IDPs](%): </td>
-        //     <td></td> 
-        //     <td></td>
-        //   </tr>
-        //   <tr>
-        //     <td>Returned IDPs (%): </td>
-        //     <td></td> 
-        //     <td></td>
-        //   </tr>
-        //   <tr>
-        //     <td>Stateless persons (%): </td>
-        //     <td></td> 
-        //     <td></td>
-        //   </tr>
-        //   <tr>
-        //     <td>Others of concern (%): </td>
-        //     <td></td> 
-        //     <td></td>
-        //   </tr>
-        // </table>
+          "<h3>" + countrynames[d.id] + "</h3>" +
+          `<table>
+            <thead>
+          <tr>
+            <th>Status</th>
+            <th>Inflow</th> 
+            <th>Outflow</th>
+          </tr>
+            </thead>
+          <tr>
+            <td>Total (in millions)</td>
+            <td>${(d.properties.aggregate_inflows/1000000).toFixed(1)}</td> 
+            <td>${(d.properties.aggregate_outflows/1000000).toFixed(1)}</td>
+          </tr>
+          <tr>
+            <td>Refugees (%)</td>
+            <td>${((d.properties.aggregate_refugee_inflows/d.properties.aggregate_inflows)*100).toFixed(1)}</td> 
+            <td>${((d.properties.aggregate_refugee_outflows/d.properties.aggregate_outflows)*100).toFixed(1)}</td>
+          </tr>
+          <tr>
+            <td>Asylum pending (%)</td>
+            <td>${((d.properties.aggregate_asylum_pending_inflows/d.properties.aggregate_inflows)*100).toFixed(1)}</td> 
+            <td>${((d.properties.aggregate_asylum_pending_outflows/d.properties.aggregate_outflows)*100).toFixed(1)}</td>
+          </tr>
+          <tr>
+            <td>Returned refugees (%)</td>
+            <td>${((d.properties.aggregate_ret_refugees_inflows/d.properties.aggregate_inflows)*100).toFixed(1)}</td> 
+            <td>${((d.properties.aggregate_ret_refugees_outflows/d.properties.aggregate_outflows)*100).toFixed(1)}</td>
+          </tr>
+          <tr>
+            <td>IDPs(%)</td>
+            <td>${((d.properties.aggregate_idps_inflows/d.properties.aggregate_inflows)*100).toFixed(1)}</td> 
+            <td>${((d.properties.aggregate_idps_outflows/d.properties.aggregate_outflows)*100).toFixed(1)}</td>
+          </tr>
+          <tr>
+            <td>Returned IDPs (%)</td>
+            <td>${((d.properties.aggregate_ret_idps_inflows/d.properties.aggregate_inflows)*100).toFixed(1)}</td> 
+            <td>${((d.properties.aggregate_ret_idps_outflows/d.properties.aggregate_outflows)*100).toFixed(1)}</td>
+          </tr>
+          <tr>
+            <td>Stateless (%)</td>
+            <td>${((d.properties.aggregate_stateless_inflows/d.properties.aggregate_inflows)*100).toFixed(1)}</td> 
+            <td>${((d.properties.aggregate_stateless_outflows/d.properties.aggregate_outflows)*100).toFixed(1)}</td>
+          </tr>
+          <tr>
+            <td>Others (%)</td>
+            <td>${((d.properties.aggregate_others_concern_inflows/d.properties.aggregate_inflows)*100).toFixed(1)}</td> 
+            <td>${((d.properties.aggregate_others_concern_outflows/d.properties.aggregate_outflows)*100).toFixed(1)}</td>
+          </tr>
+        </table>`
           )
         .transition()		
         .duration(200)		
