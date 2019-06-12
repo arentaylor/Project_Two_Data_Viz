@@ -1,13 +1,16 @@
 # Data Bootcamp Project Two
 
-April Taylor
-Bhavesh Nema
-Ragavendar Kumar
-
-Python flask
-HTML/CSS
-Javascript
-D3
-Plotly
+<p>April Taylor
+<br>Bhavesh Nema
+<br>Ragavendar Kumar</p>
+<br>
+<br>
+<p>Python flask
+<br>HTML/CSS
+<br>Javascript
+<br>D3
+<br>Plotly</p>
+<br>
+<br>
 
 ![](static/images/Capture.JPG)
