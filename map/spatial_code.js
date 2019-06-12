@@ -50,22 +50,22 @@
           node.properties.aggregate_inflows = inflows.reduce(function(memo, link) { return memo + link.flow; }, 0);
           node.properties.aggregate_outflows = outflows.reduce(function(memo, link) { return memo + link.flow; }, 0);
           //Inflows
-          node.properties.aggregate_refugee_inflows = inflows.reduce(function(memo, link) { return memo + link.refugees; }, 0);
-          node.properties.aggregate_asylum_pending_inflows = inflows.reduce(function(memo, link) { return memo + link.asylum_seekers_pending_cases; }, 0);
-          node.properties.aggregate_ret_refugees_inflows = inflows.reduce(function(memo, link) { return memo + link.returned_refugees; }, 0);
-          node.properties.aggregate_idps_inflows = inflows.reduce(function(memo, link) { return memo + link.internally_displaced_persons_IDPs; }, 0);
-          node.properties.aggregate_ret_idps_inflows = inflows.reduce(function(memo, link) { return memo + link.returned_IDPs; }, 0);
-          node.properties.aggregate_stateless_inflows = inflows.reduce(function(memo, link) { return memo + link.stateless_persons; }, 0);
-          node.properties.aggregate_others_concern_inflows = inflows.reduce(function(memo, link) { return memo + link.others_of_concern; }, 0);
-
+          node.properties.aggregate_refugee_inflows = inflows.reduce(function(memo, link) { return memo + parseFloat(link.refugees); }, 0);
+          node.properties.aggregate_asylum_pending_inflows = inflows.reduce(function(memo, link) { return memo + parseFloat(link.asylum_seekers_pending_cases); }, 0);
+          node.properties.aggregate_ret_refugees_inflows = inflows.reduce(function(memo, link) { return memo + parseFloat(link.returned_refugees); }, 0);
+          node.properties.aggregate_idps_inflows = inflows.reduce(function(memo, link) { return memo + parseFloat(link.internally_displaced_persons_IDPs); }, 0);
+          node.properties.aggregate_ret_idps_inflows = inflows.reduce(function(memo, link) { return memo + parseFloat(link.returned_IDPs); }, 0);
+          node.properties.aggregate_stateless_inflows = inflows.reduce(function(memo, link) { return memo + parseFloat(link.stateless_persons); }, 0);
+          node.properties.aggregate_others_concern_inflows = inflows.reduce(function(memo, link) { return memo + parseFloat(link.others_of_concern); }, 0);
+          
           //Outflows
-          node.properties.aggregate_refugee_outflows = outflows.reduce(function(memo, link) { return memo + link.refugees; }, 0);
-          node.properties.aggregate_asylum_pending_outflows = outflows.reduce(function(memo, link) { return memo + link.asylum_seekers_pending_cases; }, 0);
-          node.properties.aggregate_ret_refugees_outflows = outflows.reduce(function(memo, link) { return memo + link.returned_refugees; }, 0);
-          node.properties.aggregate_idps_outflows = outflows.reduce(function(memo, link) { return memo + link.internally_displaced_persons_IDPs; }, 0);
-          node.properties.aggregate_ret_idps_outflows = outflows.reduce(function(memo, link) { return memo + link.returned_IDPs; }, 0);
-          node.properties.aggregate_stateless_outflows = outflows.reduce(function(memo, link) { return memo + link.stateless_persons; }, 0);
-          node.properties.aggregate_others_concern_outflows = outflows.reduce(function(memo, link) { return memo + link.others_of_concern; }, 0);
+          node.properties.aggregate_refugee_outflows = outflows.reduce(function(memo, link) { return memo + parseFloat(link.refugees); }, 0);
+          node.properties.aggregate_asylum_pending_outflows = outflows.reduce(function(memo, link) { return memo + parseFloat(link.asylum_seekers_pending_cases); }, 0);
+          node.properties.aggregate_ret_refugees_outflows = outflows.reduce(function(memo, link) { return memo + parseFloat(link.returned_refugees); }, 0);
+          node.properties.aggregate_idps_outflows = outflows.reduce(function(memo, link) { return memo + parseFloat(link.internally_displaced_persons_IDPs); }, 0);
+          node.properties.aggregate_ret_idps_outflows = outflows.reduce(function(memo, link) { return memo + parseFloat(link.returned_IDPs); }, 0);
+          node.properties.aggregate_stateless_outflows = outflows.reduce(function(memo, link) { return memo + parseFloat(link.stateless_persons); }, 0);
+          node.properties.aggregate_others_concern_outflows = outflows.reduce(function(memo, link) { return memo + parseFloat(link.others_of_concern); }, 0);
 
           return node;
         });
